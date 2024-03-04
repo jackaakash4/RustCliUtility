@@ -10,7 +10,7 @@ fn main(){
 
     //checking argument count
     if args.len() != 3 {
-        writeln!(io::stderr(), "Usage: {} <input_file> <output_file>", args[0]_.unwrap();
+        writeln!(io::stderr(), "Usage: {} <input_file> <output_file>", args[0]).unwrap();
         std::process::exit(1);
         }
     //Ensure that the program is called with exactly three arguents: the executable name, 
@@ -32,5 +32,16 @@ fn main(){
             std::process::exit(1);
         }
     };
+    //converting content to uppercase
+    let modified_content = content.to_uppercase();
 
+    //writing to output file
+
+    if let Err(err) = fs::write(output_file, modified_content){
+        eprintln!("Error writing to output file: {}", err);
+        std::process::exit(1);
+    }
+
+    println!("File successfully converted to uppercasae.");
+}
     
